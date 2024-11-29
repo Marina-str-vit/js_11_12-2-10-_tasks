@@ -16,8 +16,8 @@
     return total;
   };
   
-  console.log(add(1, 2, 3));
-  console.log(add(1, 2, 3, 4, 5, 6));
+  console.log(add(1, 2, 3)); //  6
+  console.log(add(1, 2, 3, 4, 5, 6));  // 12
   
   
 
@@ -28,18 +28,18 @@
    * будуть лише числами.
    */
   function calAverage() {
-      const arr = Array.from(arguments)
+      const arr = Array.from(arguments)  // всі аргументи представили у формі масива, щоб можна було їх обробляти
       let sum = 0;
       for(let i = 0; i < arr.length; i++) {
-        sum += arr[i]
+        sum += arr[i]  // кожен ел-нт поданого масива
       }
-      console.log(sum, arr.length);
+      console.log(sum, arr.length);  // для першого варіанта (6 3), 2вар - (42  4), 3варіант - (167  6)
       return sum / arr.length
   }
   
-  console.log(calAverage(1, 2, 3,));
-  console.log(calAverage(14, 8, 2, 18));
-  console.log(calAverage(27, 43, 2, 5, 17, 73));
+  console.log(calAverage(1, 2, 3,));  //  2
+  console.log(calAverage(14, 8, 2, 18));  // 10,5
+  console.log(calAverage(27, 43, 2, 5, 17, 73));  // 27,8333
   
   
   
