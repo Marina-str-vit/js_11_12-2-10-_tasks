@@ -71,7 +71,7 @@ function handleUpdate(event) {
     const parent = event.target.closest(".list__item"); // знайде найближчий батьківський елемент
     const id = parent.dataset.id; // отримую id з цього батьківського елемента
     
-//   /${id} - це елемент який я хочу змінити стан чекбокса 
+//   /${id} - це елемент на якому змінюю стан чекбокса, і перезаписую його 
     fetchData(`${BASE_URL}/${id}`, {
         method: "PATCH",
         body: JSON.stringify({ completed: event.target.checked }) // змінюю стан чекбокса
@@ -80,6 +80,8 @@ function handleUpdate(event) {
         .catch(error => console.log(error.message))
 }
 //тепер чекбокс відображає на сервері всі дії, що робить клиєнт на екрані
+
+// видаляю записи. Знову отримую id, щоб видалити необхідне
 function handleDelete(event) {
     if(!event.target.classList.contains("list__btn")) {
         return;
@@ -87,18 +89,15 @@ function handleDelete(event) {
 
     const parent = event.target.closest(".list__item");
     const id = parent.dataset.id;
-
-
-   
     
 //робимо запит на сервер для видалення даних з бази даних по id
     fetchData(`${BASE_URL}/${id}`, {
-        method: "DELETE"
+        method: "DELETE"    // видалили на сервері
     })
-        .then(data => parent.remove())
-        .catch(error => console.log(error))
+        .then(data => parent.remove()) // видалили на екрані в HTML викликали метод .remove()
+        .catch(error => console.log(error.message))
 }
-
+//дізебл тру одразу коли починає працювати функція, а коли запит на сервер завершивс з будьяким результатом робимо дізебл фолс
 /**
 *===========================
 */
