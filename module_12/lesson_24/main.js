@@ -91,13 +91,14 @@ async function onLoadMore() {
 // змінюю видимість кнопки з видимої на невидиму бо більше нічого не має по запиту
             loadMore.classList.replace("load-more", "load-more-hidden");
         }
-
+// звертаємося до картки, щоб можна було скролити на висоту карти
         const card = document.querySelector(".movie-card");
+// це є метод отримання висоти картки
         const cardHeight = card.getBoundingClientRect().height;
-        
+ // звернулися до глобального об'єкту       
         window.scrollBy({
-            left: 0,
-            top: cardHeight,
+            left: 0, 
+            top: cardHeight * 1,2,
             behavior: "smooth"
         })
     } catch(error) {
@@ -111,17 +112,19 @@ async function onLoadMore() {
 
 
 
-
-
 // --------------------------------------
 
+//РОБИМО ІНФІНІТІ СКРОЛ
+
 // const container = document.querySelector(".js-movie-list");
+// це додатковий ел-нт, щоб подивитися як працює скрол
 // const guard = document.querySelector(".js-guard");
 
+// ці опціїї з IntersectionObserver він допоможе слідкувати за квадратом guard
 // const options = {
 //     root: null,
-//     rootMargin: "300px",
-//     threshold: 0,
+//     rootMargin: "300px",// функ-ія відпрацює за 300рх до нашої картки
+//     threshold: 0, // розмір на скільки % з'явиться ел-нт у вікні
 // };
 
 // const observer = new IntersectionObserver(handlePagination, options);
@@ -158,6 +161,7 @@ async function onLoadMore() {
 //         container.insertAdjacentHTML("beforeend", createMarkup(data.results));
 
 //         if(data.page < data.total_pages) {
+// слідкую за елем-ом, коли він попадає в область видимості
 //             observer.observe(guard);
 //         }
 
@@ -171,10 +175,12 @@ async function onLoadMore() {
 //             page += 1;
             
 //             try {
+// робимо запит на сервер, де я передаю сторінку
 //                 const data = await serviceMovie(page);
 //                 container.insertAdjacentHTML("beforeend", createMarkup(data.results));
-
+//  нехай відбувається фун-ція лише при цій умові 
 //                 if(data.page >= data.total_pages) {
+//     тоді припиняй слідкувати за сторінкою
 //                     observer.unobserve(entry.target);
 //                 }
 
@@ -187,7 +193,7 @@ async function onLoadMore() {
 // }
 /**
 *============================================================================
-*     Початок лекції, теорія
+*     те саме але з КНОПКАМИ 
 */
 
 
